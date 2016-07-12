@@ -185,7 +185,7 @@ export default class Uikit extends Component {
 			</div>
 			<div className="usa-width-one-whole add-hmargin">
 				<h3>Info Gathering Forms</h3>
-				<form className="usa-form wrap-border wrap-padding">
+				<form className="usa-form-large wrap-border wrap-padding">
 					<fieldset>
 						<legend>Name</legend>
 						<label htmlFor="title">Title</label>
@@ -284,6 +284,39 @@ export default class Uikit extends Component {
 						<input className="usa-input-medium" id="zip" name="zip" type="text" pattern="[\d]{5}(-[\d]{4})?" data-grouplength="5,4" data-delimiter="-" data-politespace="" />
 					</fieldset>
 				</form>
+			</div>
+			<div className="usa-width-one-whole add-hmargin">
+				<h4>Password Reset Form</h4>
+				<form className="usa-form-large wrap-padding wrap-border">
+					<fieldset>
+						<legend className="usa-drop_text">Reset password</legend>
+						<span className="usa-serif">Please enter your new password</span>
+
+						<div className="usa-alert usa-alert-info">
+							<div className="usa-alert-body">
+								<h3 className="usa-alert-heading">Passwords must:</h3>
+							</div>
+							<ul className="usa-checklist" id="validation_list">
+								<li data-validator="length">Be at least 8 characters</li>
+								<li data-validator="uppercase">Have at least 1 uppercase character</li>
+								<li data-validator="numerical">Have at least 1 numerical character</li>
+								<li>Another requirement</li>
+							</ul>
+						</div>
+
+						<label htmlFor="password">New password</label>
+						<input id="password" name="password" type="password" aria-describedby="validation_list" className="js-validate_password" data-validate-length=".{8,}" data-validate-uppercase="[A-Z]" data-validate-numerical="\d" data-validation-element="#validation_list" />
+
+						<label htmlFor="confirmPassword">Confirm password</label>
+						<input id="confirmPassword" name="confirmPassword" type="password" />
+						<p className="usa-form-note">
+							<a title="Show my typing" href="#" className="usa-show_multipassword" aria-controls="password confirmPassword">
+						Show my typing</a>
+						</p>
+
+						<input type="submit" value="Reset password" />
+					</fieldset>
+				</form>			
 			</div>
 		</div>
 		);
