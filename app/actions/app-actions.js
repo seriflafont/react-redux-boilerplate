@@ -6,8 +6,6 @@ export const RECEIVE_HEROES = 'RECEIVE_HEROES';
 export const POST_HERO = 'POST_HERO';
 export const RECEIVE_CREATE_SUCCESS = 'RECEIVE_CREATE_SUCCESS';
 
-export const HEROES_URL = 'http://54.234.158.11/heros.json';
-
 /******************** GET ***********************/
 
 export function getHeroes() {
@@ -24,12 +22,14 @@ export function receiveHeroes(responseJson) {
 
 export function fetchHeroes() {
   //use thunk middleware to be able to dispatch other actions from this one
-  return dispatch => {
+  return (dispatch, getState) => {
+    const endpoint = getState().config.settings.endpoint;
+
     //update state to mark fetch start
     dispatch(getHeroes());
 
     //return promise that will be evaluated when complete
-    return fetch(HEROES_URL, {
+    return fetch(endpoint + 'heros.json', {
       method: 'GET'
     })
     .then((response) => response.text())
@@ -59,12 +59,16 @@ export function receivePostSuccess(responseJson) {
 
 export function postHeroData(data) {
   //use thunk middleware to be able to dispatch other actions from this one
-  return dispatch => {
+  return (dispatch, getState) => {
+
+    //get endpoint
+    const endpoint = getState().config.settings.endpoint;
+
     //update state to mark fetch start
     dispatch(postHero());
 
     //return promise that will be evaluated when complete
-    var request = new Request(HEROES_URL, {
+    var request = new Request(endpoint + 'heros.json', {
       method: 'POST',
       mode: 'cors',
       headers: new Headers({
